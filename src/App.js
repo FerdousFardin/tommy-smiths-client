@@ -5,7 +5,7 @@ import { route } from "./Routes/Routes";
 
 function App() {
   return (
-    <div className="bg-slate-200">
+    <div className="bg-slate-200 custom-font">
       <RouterProvider router={route} />
     </div>
   );

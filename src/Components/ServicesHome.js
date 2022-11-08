@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { ServicesCard } from "./ServicesCard";
 
 export const ServiceHome = () => {
@@ -15,15 +16,15 @@ export const ServiceHome = () => {
   return (
     <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
       <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
-        <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
-          <span className="relative inline-block">
-            <span className="relative">The</span>
-          </span>{" "}
-          quick, brown fox jumps over a lazy dog
+        <h2 className="py-10 mx-20 text-3xl font-mono tracking-tight  sm:text-4xl sm:leading-none">
+          My{" "}
+          <span className="relative inline-block px-2">
+            <div className="absolute inset-0 transform -skew-x-12 bg-teal-accent-400" />
+            <span className="relative text-teal-900">Services</span>
+          </span>
         </h2>
-        <p className="text-base text-gray-700 md:text-lg">
-          Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-          accusantium doloremque rem aperiam, eaque ipsa quae.
+        <p className="font-extrabold text-gray-700 md:text-xl">
+          DO YOU WANT ME TO SHOOT YOU?
         </p>
       </div>
       <div className="grid gap-5 mb-8 md:grid-cols-2 lg:grid-cols-3">
@@ -37,12 +38,12 @@ export const ServiceHome = () => {
         ))}
       </div>
       <div className="text-center">
-        <a
-          href="/"
+        <Link
+          to={"/services"}
           className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md md:w-auto bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
         >
           See All
-        </a>
+        </Link>
       </div>
     </div>
   );
