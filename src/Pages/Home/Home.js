@@ -1,3 +1,4 @@
+import { ServiceHome } from "../../Components/ServicesHome";
 import { Banner } from "./Banner";
 import { Slider } from "./Slider";
 
@@ -18,6 +19,7 @@ export const Home = () => {
         <Banner />
       </div>
       <Slider />
+      <ServiceHome />
     </>
   );
 };

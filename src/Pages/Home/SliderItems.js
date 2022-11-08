@@ -3,7 +3,7 @@ import React from "react";
 export const SliderItems = ({ slideData: { image, prev, id, next } }) => {
   return (
     <div id={`slide${id}`} className="carousel-item relative w-full ">
-      <img src={image} className="w-full h-auto rounded-xl" />
+      <img src={image} className="object-cover w-full h-auto rounded-xl" />
       <div className="absolute flex justify-end gap-5 transform right-5 top-10">
         <a
           href={`#slide${prev}`}
