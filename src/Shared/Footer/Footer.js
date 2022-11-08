@@ -20,10 +20,10 @@ export const Footer = () => {
               to="/"
               aria-label="Company"
               title="Company"
-              class="inline-flex items-center"
+              className="inline-flex items-center"
             >
               <svg
-                class="w-8 text-teal-accent-400"
+                className="w-8 text-teal-accent-400"
                 viewBox="0 0 24 24"
                 strokeLinejoin="round"
                 strokeWidth="2"
@@ -37,7 +37,7 @@ export const Footer = () => {
                 <rect x="14" y="1" width="7" height="6" />
                 <rect x="14" y="11" width="7" height="12" />
               </svg>
-              <span class="ml-2 md:text-2xl lg:text-3xl text-xl font-thin tracking-wide text-gray-100 uppercase">
+              <span className="ml-2 md:text-2xl lg:text-3xl text-xl font-thin tracking-wide text-gray-100 uppercase">
                 <span className="text-pink-accent-100">Tommy </span> Smith
               </span>
             </Link>

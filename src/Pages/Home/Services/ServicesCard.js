@@ -1,11 +1,18 @@
 import React from "react";
+import { PhotoProvider, PhotoView } from "react-photo-view";
+import { Link } from "react-router-dom";
 
 export const ServicesCard = ({
-  service: { title, img, benifits, description, price },
+  service: { _id, title, img, benifits, description, price },
 }) => {
   return (
     <div className="overflow-hidden transition-shadow duration-300 bg-white rounded shadow-sm">
-      <img src={img} className="object-cover w-full h-64" alt="" />
+      <PhotoProvider>
+        <PhotoView src={img}>
+          <img src={img} className="object-cover w-full h-64" alt="" />
+        </PhotoView>
+      </PhotoProvider>
+      {/*  */}
       <div className="p-5 border border-t-0">
         <a
           href="/"
@@ -28,13 +35,13 @@ export const ServicesCard = ({
           ))}
         </ul>
         <p className="mb-2 text-gray-700">{description.slice(0, 100)}...</p>
-        <a
-          href="/"
+        <Link
+          to={`/service/${_id}`}
           aria-label=""
           className="inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800"
         >
           Learn more
-        </a>
+        </Link>
       </div>
     </div>
   );
