@@ -57,26 +57,26 @@ export const Header = () => {
                 Blog
               </Link>
             </li>
-            <li>
-              <Link
-                to={"/services"}
-                aria-label="Our product"
-                title="Our product"
-                className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
-              >
-                Something
-              </Link>
-            </li>
             {user?.email ? (
               <>
                 <li>
                   <Link
-                    to={"/services"}
+                    to={"/my-reviews"}
                     aria-label="Our product"
                     title="Our product"
                     className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
                   >
                     My Reviews
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to={"/add-service"}
+                    aria-label="Our product"
+                    title="Our product"
+                    className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
+                  >
+                    Add Service
                   </Link>
                 </li>
                 <li>
