@@ -1,10 +1,23 @@
 import React, { useContext, useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../../Auth/AuthProvider";
 import { TableRow } from "./TableRow";
 
 export const MyReviews = () => {
   const { user } = useContext(AuthContext);
   const [myReviews, setMyReviews] = useState([]);
+  const notify = () =>
+    toast.success("Review Deleted.", {
+      position: "top-center",
+      autoClose: 2500,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
   useEffect(() => {
     fetch(`http://localhost:5000/reviews?email=${user?.email}`)
       .then((res) => res.json())
@@ -20,6 +33,7 @@ export const MyReviews = () => {
       .then((data) => {
         console.log(data);
         if (data.deletedCount > 0) {
+          notify();
           const restReviews = myReviews.filter(
             (myReview) => myReview._id !== id
           );
