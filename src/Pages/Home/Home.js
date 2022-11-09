@@ -1,11 +1,16 @@
 import { Banner } from "./Banner";
 import { ServiceHome } from "./ServicesHome";
 import { Slider } from "./Slider";
+import { Helmet } from "react-helmet-async";
 
 export const Home = () => {
   return (
     <>
       <div className="relative flex bg-slate-300 flex-col-reverse px-4 py-16 mx-auto lg:block lg:flex-col lg:py-32 xl:py-48 md:px-8 sm:max-w-xl md:max-w-full">
+        <Helmet>
+          <title>Home - Tommy Smiths Photography</title>
+          <meta name="Home" content="Home Page" />
+        </Helmet>
         <div className="absolute inset-x-0 bottom-0">
           <svg
             viewBox="0 0 224 12"

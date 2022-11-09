@@ -2,12 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Footer } from "../../Shared/Footer/Footer";
 import { Header } from "../../Shared/Header/Header";
+import { Helmet } from "react-helmet-async";
 
 const Error = () => {
   return (
     <>
       <Header />
       <div className="flex items-center flex-col justify-center lg:flex-row py-28 px-6 md:px-24 md:py-20 lg:py-32 gap-16 lg:gap-28">
+        <Helmet>
+          <title>Error - Tommy Smiths Photography</title>
+          <meta name="Error" content="Error Page" />
+        </Helmet>
         <div className="w-full lg:w-1/2">
           <img
             className="hidden lg:block"

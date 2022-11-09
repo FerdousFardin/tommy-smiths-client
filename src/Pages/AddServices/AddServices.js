@@ -1,4 +1,6 @@
 import React from "react";
+import { Helmet } from "react-helmet-async";
+
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
@@ -50,6 +52,10 @@ export const AddServices = () => {
   };
   return (
     <div className="container mx-auto">
+      <Helmet>
+        <title>Add a Service - Tommy Smiths Photography</title>
+        <meta name="Add Service" content="Add Service Page" />
+      </Helmet>
       <div className="flex justify-center px-6 my-12">
         <div className="w-full xl:w-3/4 lg:w-11/12 flex">
           <div className="w-full h-auto bg-gray-400 hidden lg:block lg:w-5/12 bg-cover rounded-l-lg bg-[url('https://images.unsplash.com/photo-1512314889357-e157c22f938d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=680')]"></div>

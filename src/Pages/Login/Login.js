@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Auth/AuthProvider";
 import { useForm } from "react-hook-form";
-
+import { Helmet } from "react-helmet-async";
 export const Login = () => {
   const {
     register,
@@ -29,6 +29,10 @@ export const Login = () => {
   };
   return (
     <div className="h-full bg-gradient-to-tl from-green-400 to-indigo-900 w-full py-16  px-4">
+      <Helmet>
+        <title>Login - Tommy Smiths Photography</title>
+        <meta name="Login" content="Login Page" />
+      </Helmet>
       <div className="flex flex-col items-center justify-center">
         <span
           to="/"

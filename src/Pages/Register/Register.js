@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Auth/AuthProvider";
+import { Helmet } from "react-helmet-async";
 
 export function Register() {
   const { registerUser } = useContext(AuthContext);
@@ -21,6 +22,10 @@ export function Register() {
   };
   return (
     <div className="h-full bg-gradient-to-tl from-green-400 to-indigo-900 w-full py-16 px-4">
+      <Helmet>
+        <title>Register - Tommy Smiths Photography</title>
+        <meta name="Register" content="Register Page" />
+      </Helmet>
       <div className="flex flex-col items-center justify-center">
         <svg
           width={188}

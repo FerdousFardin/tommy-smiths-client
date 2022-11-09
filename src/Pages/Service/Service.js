@@ -2,12 +2,17 @@ import React from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { PhotoViewer } from "../Services/PhotoViewer";
 import { Reviews } from "./Reviews";
+import { Helmet } from "react-helmet-async";
 
 export const Service = () => {
   const [{ _id, title, img, price, description, rating }] = useLoaderData();
   // console.log(img);
   return (
     <div className="dark:bg-gray-900 py-20 px-5 lg:px-5">
+      <Helmet>
+        <title>{title} - Tommy Smiths Photography</title>
+        <meta name="Services" content="Services Page" />
+      </Helmet>
       <div className="mx-auto sm:text-center lg:max-w-2xl">
         <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
           <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">

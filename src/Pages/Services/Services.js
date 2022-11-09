@@ -1,11 +1,16 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
 import { ServicesCard } from "./ServicesCard";
+import { Helmet } from "react-helmet-async";
 
 export const Services = () => {
   const services = useLoaderData();
   return (
     <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+      <Helmet>
+        <title>Services - Tommy Smiths Photography</title>
+        <meta name="Home" content="Home Page" />
+      </Helmet>
       <h2 className="max-w-lg mb-6 text-3xl custom-font font-semibold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto text-center">
         <span className="relative inline-block uppercase ">
           <svg

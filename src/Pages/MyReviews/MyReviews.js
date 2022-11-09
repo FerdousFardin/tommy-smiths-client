@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../../Auth/AuthProvider";
 import { TableRow } from "./TableRow";
+import { Helmet } from "react-helmet-async";
 
 export const MyReviews = () => {
   const { user } = useContext(AuthContext);
@@ -55,6 +56,10 @@ export const MyReviews = () => {
   return (
     <>
       <div>
+        <Helmet>
+          <title>My Reviews - Tommy Smiths Photography</title>
+          <meta name="My Review" content="My Review Page" />
+        </Helmet>
         <div className="sm:px-6 w-full">
           <div className="px-4 md:px-10 py-4 md:py-7">
             <div className="flex items-center justify-between">
