@@ -1,7 +1,25 @@
-import React from "react";
+import { GoogleAuthProvider } from "firebase/auth";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Auth/AuthProvider";
 
 export const Login = () => {
+  const { signInWithProvider } = useContext(AuthContext);
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
+  };
+  const googleSignin = () => {
+    const googleProvider = new GoogleAuthProvider();
+    signInWithProvider(googleProvider)
+      .then((res) => {
+        console.log(res.user);
+      })
+      .catch((er) => console.error(er));
+  };
   return (
     <div className="h-full bg-gradient-to-tl from-green-400 to-indigo-900 w-full py-16  px-4">
       <div className="flex flex-col items-center justify-center">
@@ -52,6 +70,7 @@ export const Login = () => {
             </Link>
           </p>
           <button
+            onClick={googleSignin}
             aria-label="Continue with google"
             role="button"
             className="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-10"
@@ -97,48 +116,52 @@ export const Login = () => {
             </p>
             <hr className="w-full bg-gray-400  " />
           </div>
-          <div>
-            <label
-              id="email"
-              className="text-sm font-medium leading-none text-gray-800"
-            >
-              Email
-            </label>
-            <input
-              aria-labelledby="email"
-              type="email"
-              className="bg-gray-200 border rounded  text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
-            />
-          </div>
-          <div className="mt-6  w-full">
-            <label
-              for="pass"
-              className="text-sm font-medium leading-none text-gray-800"
-            >
-              Password
-            </label>
-            <div className="relative flex items-center justify-center">
+          <form onSubmit={handleLogin}>
+            <div>
+              <label
+                id="email"
+                className="text-sm font-medium leading-none text-gray-800"
+              >
+                Email
+              </label>
               <input
-                id="pass"
-                type="password"
+                aria-labelledby="email"
+                type="email"
+                name="email"
                 className="bg-gray-200 border rounded  text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
               />
-              <div className="absolute right-0 mt-2 mr-3 cursor-pointer">
-                <img
-                  src="https://tuk-cdn.s3.amazonaws.com/can-uploader/sign_in-svg5.svg"
-                  alt="viewport"
+            </div>
+            <div className="mt-6  w-full">
+              <label
+                for="pass"
+                className="text-sm font-medium leading-none text-gray-800"
+              >
+                Password
+              </label>
+              <div className="relative flex items-center justify-center">
+                <input
+                  id="pass"
+                  type="password"
+                  name="password"
+                  className="bg-gray-200 border rounded  text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
                 />
+                <div className="absolute right-0 mt-2 mr-3 cursor-pointer">
+                  <img
+                    src="https://tuk-cdn.s3.amazonaws.com/can-uploader/sign_in-svg5.svg"
+                    alt="viewport"
+                  />
+                </div>
               </div>
             </div>
-          </div>
-          <div className="mt-8">
-            <button
-              role="button"
-              className="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 text-sm font-semibold leading-none text-white focus:outline-none bg-indigo-700 border rounded hover:bg-indigo-600 py-4 w-full"
-            >
-              Sign In
-            </button>
-          </div>
+            <div className="mt-8">
+              <button
+                type="submit"
+                className="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 text-sm font-semibold leading-none text-white focus:outline-none bg-indigo-700 border rounded hover:bg-indigo-600 py-4 w-full"
+              >
+                Sign In
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>

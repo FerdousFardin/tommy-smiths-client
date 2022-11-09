@@ -1,12 +1,12 @@
 import React from "react";
 import { Link, useLoaderData } from "react-router-dom";
-import { Review } from "./Review";
+import { Reviews } from "./Reviews";
 
 export const Service = () => {
   const [{ _id, title, img, price, description, rating }] = useLoaderData();
   console.log(img);
   return (
-    <div className="dark:bg-gray-900 py-20">
+    <div className="dark:bg-gray-900 py-20 px-5 lg:px-5">
       <div className="mx-auto sm:text-center lg:max-w-2xl">
         <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
           <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
@@ -37,8 +37,6 @@ export const Service = () => {
                 <div className="absolute inset-0 transform -skew-x-12 bg-teal-accent-400" />
                 <span className="relative text-teal-900">About</span>
               </span>
-              {/*
-               */}
             </span>
             <br />
             {title}
@@ -68,7 +66,7 @@ export const Service = () => {
           </svg>
         </Link>
       </div>
-      <Review />
+      <Reviews />
     </div>
   );
 };
