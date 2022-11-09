@@ -1,6 +1,9 @@
+import { useContext } from "react";
+import { AuthContext } from "../../Auth/AuthProvider";
 import { Review } from "./Review";
 
 export const Reviews = () => {
+  const { user } = useContext(AuthContext);
   const addReview = (e) => {
     e.preventDefault();
   };
@@ -12,12 +15,15 @@ export const Reviews = () => {
       <div className="grid gap-8 lg:grid-cols-3 sm:max-w-sm sm:mx-auto lg:max-w-full">
         <Review />
       </div>
-      {
+      {user?.email ? (
         <>
           <h2 className="max-w-lg my-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:text-center md:mx-auto">
             Want to add your Review?
           </h2>
-          <form onSubmit={addReview} className="form-control w-1/3 mx-auto">
+          <form
+            onSubmit={addReview}
+            className="form-control sm:w-2/3 lg:w-1/3 mx-auto"
+          >
             <label className="label">
               <span className="label-text">Your review</span>
             </label>
@@ -34,7 +40,11 @@ export const Reviews = () => {
             </div>
           </form>
         </>
-      }
+      ) : (
+        <h1 className="text-info text-center my-10 text-lg md:text-2xl lg:text-4xl">
+          Please Login to Add Review
+        </h1>
+      )}
     </div>
   );
 };

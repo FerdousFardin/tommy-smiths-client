@@ -2,15 +2,22 @@ import { GoogleAuthProvider } from "firebase/auth";
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Auth/AuthProvider";
+import { useForm } from "react-hook-form";
 
 export const Login = () => {
-  const { signInWithProvider } = useContext(AuthContext);
-  const handleLogin = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const email = form.email.value;
-    const password = form.password.value;
-    console.log(email, password);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const { signInWithProvider, signInUser } = useContext(AuthContext);
+  const handleLogin = (data) => {
+    const { email, password } = data;
+    signInUser(email, password)
+      .then((res) => {
+        console.log(res.user);
+      })
+      .catch((er) => console.error(er));
   };
   const googleSignin = () => {
     const googleProvider = new GoogleAuthProvider();
@@ -116,7 +123,7 @@ export const Login = () => {
             </p>
             <hr className="w-full bg-gray-400  " />
           </div>
-          <form onSubmit={handleLogin}>
+          <form onSubmit={handleSubmit(handleLogin)}>
             <div>
               <label
                 id="email"
@@ -125,11 +132,21 @@ export const Login = () => {
                 Email
               </label>
               <input
+                {...register("email", {
+                  required: "Email is required.",
+                  pattern: {
+                    value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
+                    message: "Email is not valid.",
+                  },
+                })}
                 aria-labelledby="email"
                 type="email"
                 name="email"
                 className="bg-gray-200 border rounded  text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
               />
+              {errors.email && (
+                <p className="text-red-500 py-2">*{errors.email.message}</p>
+              )}
             </div>
             <div className="mt-6  w-full">
               <label
@@ -140,11 +157,19 @@ export const Login = () => {
               </label>
               <div className="relative flex items-center justify-center">
                 <input
+                  {...register("password", {
+                    required: "Password is required.",
+                    minLength: {
+                      value: 6,
+                      message: "Password should be at-least 6 characters.",
+                    },
+                  })}
                   id="pass"
                   type="password"
                   name="password"
                   className="bg-gray-200 border rounded  text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
                 />
+
                 <div className="absolute right-0 mt-2 mr-3 cursor-pointer">
                   <img
                     src="https://tuk-cdn.s3.amazonaws.com/can-uploader/sign_in-svg5.svg"
@@ -152,6 +177,9 @@ export const Login = () => {
                   />
                 </div>
               </div>
+              {errors.password && (
+                <p className="text-red-500 py-2">*{errors.password.message}</p>
+              )}
             </div>
             <div className="mt-8">
               <button

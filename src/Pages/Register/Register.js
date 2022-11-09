@@ -1,8 +1,24 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { AuthContext } from "../../Auth/AuthProvider";
 
 export function Register() {
+  const { registerUser } = useContext(AuthContext);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const [sidebar, setsidebar] = useState();
+  const handleRegister = (data) => {
+    const { email, password } = data;
+    registerUser(email, password)
+      .then((res) => {
+        console.log(res.user);
+      })
+      .catch((er) => console.error(er));
+  };
   return (
     <div className="h-full bg-gradient-to-tl from-green-400 to-indigo-900 w-full py-16 px-4">
       <div className="flex flex-col items-center justify-center">
@@ -42,7 +58,17 @@ export function Register() {
               Sign in here
             </Link>
           </p>
-          <form>
+          <form onSubmit={handleSubmit(handleRegister)}>
+            <div>
+              <lable className="text-sm font-medium leading-none text-gray-800">
+                Full Name
+              </lable>
+              <input
+                name="displayName"
+                type="text"
+                className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
+              />
+            </div>
             <div>
               <lable className="text-sm font-medium leading-none text-gray-800">
                 Email
@@ -51,8 +77,19 @@ export function Register() {
                 aria-label="enter email adress"
                 role="input"
                 type="email"
+                name="email"
+                {...register("email", {
+                  required: "Email is required.",
+                  pattern: {
+                    value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
+                    message: "Email is not valid.",
+                  },
+                })}
                 className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
               />
+              {errors.email && (
+                <p className="text-red-500 py-2">*{errors.email.message}</p>
+              )}
             </div>
             <div className="mt-6  w-full">
               <lable className="text-sm font-medium leading-none text-gray-800">
@@ -63,6 +100,14 @@ export function Register() {
                   aria-label="enter Password"
                   role="input"
                   type="password"
+                  name="password"
+                  {...register("password", {
+                    required: "Password is required.",
+                    minLength: {
+                      value: 6,
+                      message: "Password should be at-least 6 characters.",
+                    },
+                  })}
                   className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
                 />
                 <div className="absolute right-0 mt-2 mr-3 cursor-pointer">
@@ -80,6 +125,9 @@ export function Register() {
                   </svg>
                 </div>
               </div>
+              {errors.password && (
+                <p className="text-red-500 py-2">*{errors.password.message}</p>
+              )}
             </div>
             <div className="mt-8">
               <button
