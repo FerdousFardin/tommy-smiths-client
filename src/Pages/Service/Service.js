@@ -1,10 +1,11 @@
 import React from "react";
 import { Link, useLoaderData } from "react-router-dom";
+import { PhotoViewer } from "../Home/Services/PhotoViewer";
 import { Reviews } from "./Reviews";
 
 export const Service = () => {
   const [{ _id, title, img, price, description, rating }] = useLoaderData();
-  console.log(img);
+  // console.log(img);
   return (
     <div className="dark:bg-gray-900 py-20 px-5 lg:px-5">
       <div className="mx-auto sm:text-center lg:max-w-2xl">
@@ -43,10 +44,11 @@ export const Service = () => {
           </h2>
         </div>
         <div className="mb-4 transition-shadow duration-300 hover:shadow-xl lg:mb-6">
-          <img
-            className="object-cover w-full h-56 rounded shadow-lg sm:h-64 md:h-80 lg:h-96"
-            src={img}
-            alt=""
+          <PhotoViewer
+            imgStyles={
+              "object-cover w-full h-56 rounded shadow-lg sm:h-64 md:h-80 lg:h-96"
+            }
+            img={img}
           />
         </div>
         <p className="max-w-xl mb-4 text-base text-gray-700 sm:mx-auto">

@@ -1,16 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { PhotoViewer } from "../Services/PhotoViewer";
 
 export const ServicesCard = ({
   service: { title, img, benifits, description, price },
 }) => {
   return (
     <div className="flex flex-col transition duration-300 bg-white rounded shadow-sm hover:shadow">
-      <div className="relative w-full h-48">
-        <img
-          src={img}
-          className="object-cover w-full h-full rounded-t"
-          alt="Plan"
+      <div className="relative w-full ">
+        <PhotoViewer
+          img={img}
+          imgStyles={"object-cover w-full h-48 rounded-t"}
         />
       </div>
       <div className="flex flex-col justify-between flex-grow p-8 border border-t-0 rounded-b">

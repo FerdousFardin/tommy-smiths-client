@@ -1,5 +1,5 @@
-import { ServiceHome } from "../../Components/ServicesHome";
 import { Banner } from "./Banner";
+import { ServiceHome } from "./ServicesHome";
 import { Slider } from "./Slider";
 
 export const Home = () => {

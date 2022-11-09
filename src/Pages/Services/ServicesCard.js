@@ -1,17 +1,13 @@
 import React from "react";
-import { PhotoProvider, PhotoView } from "react-photo-view";
 import { Link } from "react-router-dom";
+import { PhotoViewer } from "../Services/PhotoViewer";
 
 export const ServicesCard = ({
   service: { _id, title, img, benifits, description, price },
 }) => {
   return (
     <div className="overflow-hidden transition-shadow duration-300 bg-white rounded shadow-sm">
-      <PhotoProvider>
-        <PhotoView src={img}>
-          <img src={img} className="object-cover w-full h-64" alt="" />
-        </PhotoView>
-      </PhotoProvider>
+      <PhotoViewer img={img} imgStyles={"object-cover w-full h-64"} />
       {/*  */}
       <div className="p-5 border border-t-0">
         <a
