@@ -31,6 +31,7 @@ export const AddServices = () => {
       1 +
       Math.random()
     ).toFixed(1);
+    serviceDetails.date = Date.now();
     fetch("http://localhost:5000/services", {
       method: "POST",
       headers: {

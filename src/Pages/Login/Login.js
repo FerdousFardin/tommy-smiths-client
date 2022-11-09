@@ -1,10 +1,15 @@
 import { GoogleAuthProvider } from "firebase/auth";
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Auth/AuthProvider";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
 export const Login = () => {
+  const [error, setError] = useState("");
+
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -15,17 +20,26 @@ export const Login = () => {
     const { email, password } = data;
     signInUser(email, password)
       .then((res) => {
-        console.log(res.user);
+        // console.log(res.user);
+        setError("");
+        navigate(from, { replace: true });
       })
-      .catch((er) => console.error(er));
+      .catch((er) => {
+        setError(er.code);
+        console.error(er);
+      });
   };
   const googleSignin = () => {
     const googleProvider = new GoogleAuthProvider();
     signInWithProvider(googleProvider)
-      .then((res) => {
-        console.log(res.user);
+      .then(() => {
+        setError("");
+        navigate(from, { replace: true });
       })
-      .catch((er) => console.error(er));
+      .catch((er) => {
+        setError(er.code);
+        console.error(er);
+      });
   };
   return (
     <div className="h-full bg-gradient-to-tl from-green-400 to-indigo-900 w-full py-16  px-4">
@@ -94,32 +108,6 @@ export const Login = () => {
               Continue with Google
             </p>
           </button>
-          <button
-            aria-label="Continue with github"
-            role="button"
-            className="focus:outline-none  focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-4"
-          >
-            <img
-              src="https://tuk-cdn.s3.amazonaws.com/can-uploader/sign_in-svg3.svg"
-              alt="github"
-            />
-            <p className="text-base font-medium ml-4 text-gray-700">
-              Continue with Github
-            </p>
-          </button>
-          <button
-            aria-label="Continue with twitter"
-            role="button"
-            className="focus:outline-none  focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-4"
-          >
-            <img
-              src="https://tuk-cdn.s3.amazonaws.com/can-uploader/sign_in-svg4.svg"
-              alt="twitter"
-            />
-            <p className="text-base font-medium ml-4 text-gray-700">
-              Continue with Twitter
-            </p>
-          </button>
           <div className="w-full flex items-center justify-between py-5">
             <hr className="w-full bg-gray-400" />
             <p className="text-base font-medium leading-4 px-2.5 text-gray-400">
@@ -184,6 +172,7 @@ export const Login = () => {
               {errors.password && (
                 <p className="text-red-500 py-2">*{errors.password.message}</p>
               )}
+              {error && <p className="text-red-500 py-2">*{error}</p>}
             </div>
             <div className="mt-8">
               <button

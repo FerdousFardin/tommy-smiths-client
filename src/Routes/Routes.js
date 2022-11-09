@@ -9,6 +9,7 @@ import { Register } from "../Pages/Register/Register";
 import { Service } from "../Pages/Service/Service";
 import Error from "../Pages/Error/Error";
 import { AddServices } from "../Pages/AddServices/AddServices";
+import { Private } from "../Private/Private";
 
 export const route = createBrowserRouter([
   {
@@ -38,11 +39,23 @@ export const route = createBrowserRouter([
       },
       {
         path: "/add-services",
-        element: <AddServices />,
+        element: (
+          <Private>
+            <AddServices />
+          </Private>
+        ),
       },
       {
         path: "/my-reviews",
-        element: <MyReviews />,
+        element: (
+          <Private>
+            <MyReviews />
+          </Private>
+        ),
+      },
+      {
+        path: "/blog",
+        element: <blog />,
       },
     ],
   },
