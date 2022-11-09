@@ -66,7 +66,7 @@ export const Service = () => {
           </svg>
         </Link>
       </div>
-      <Reviews />
+      <Reviews _id={_id} title={title} />
     </div>
   );
 };
