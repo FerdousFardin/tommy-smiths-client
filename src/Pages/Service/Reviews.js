@@ -1,10 +1,27 @@
 import { useContext, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import { AuthContext } from "../../Auth/AuthProvider";
 import { Review } from "./Review";
 
 export const Reviews = ({ _id, title }) => {
   const [reviews, setReviews] = useState([]);
   const { user } = useContext(AuthContext);
+  const notify = (type) => {
+    const Toast = type === "success" ? toast.success : toast.error;
+    Toast(
+      `${type === "success" ? "Review Added." : "Review couldn't be Added."}`,
+      {
+        position: "top-center",
+        autoClose: 2500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      }
+    );
+  };
   useEffect(() => {
     fetch("http://localhost:5000/reviews")
       .then((res) => res.json())
@@ -15,8 +32,10 @@ export const Reviews = ({ _id, title }) => {
   }, []);
   const addReview = (e) => {
     e.preventDefault();
+    const date = Date.now();
     const review = e.target.review.value;
     const reviewBody = {
+      date,
       service_id: _id,
       review,
       title,
@@ -38,7 +57,8 @@ export const Reviews = ({ _id, title }) => {
       .then((data) => {
         if (data.acknowledged) {
           reviewBody._id = data.insertedId;
-          setReviews([...reviews, reviewBody]);
+          setReviews([reviewBody, ...reviews]);
+          e.target.reset();
         }
       })
       .catch((er) => console.error(er));

@@ -7,11 +7,14 @@ import { Login } from "../Pages/Login/Login";
 import { MyReviews } from "../Pages/MyReviews/MyReviews";
 import { Register } from "../Pages/Register/Register";
 import { Service } from "../Pages/Service/Service";
+import Error from "../Pages/Error/Error";
+import { AddServices } from "../Pages/AddServices/AddServices";
 
 export const route = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
+    errorElement: <Error />,
     children: [
       { path: "/", element: <Home /> },
       {
@@ -34,7 +37,11 @@ export const route = createBrowserRouter([
         element: <Register />,
       },
       {
-        path: "my-reviews",
+        path: "/add-services",
+        element: <AddServices />,
+      },
+      {
+        path: "/my-reviews",
         element: <MyReviews />,
       },
     ],

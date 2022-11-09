@@ -8,7 +8,6 @@ export const ServicesCard = ({
   return (
     <div className="overflow-hidden transition-shadow duration-300 bg-white rounded shadow-sm">
       <PhotoViewer img={img} imgStyles={"object-cover w-full h-64"} />
-      {/*  */}
       <div className="p-5 border border-t-0">
         <a
           href="/"

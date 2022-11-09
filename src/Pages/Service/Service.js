@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useLoaderData } from "react-router-dom";
-import { PhotoViewer } from "../Home/Services/PhotoViewer";
+import { PhotoViewer } from "../Services/PhotoViewer";
 import { Reviews } from "./Reviews";
 
 export const Service = () => {

@@ -71,12 +71,12 @@ export const Header = () => {
                 </li>
                 <li>
                   <Link
-                    to={"/add-service"}
+                    to={"/add-services"}
                     aria-label="Our product"
                     title="Our product"
                     className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
                   >
-                    Add Service
+                    Add Services
                   </Link>
                 </li>
                 <li>
