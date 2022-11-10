@@ -5,7 +5,7 @@ export const Banner = () => {
     <>
       <div className="z-0 flex justify-center h-full -mx-4 overflow-hidden lg:pt-24 lg:pb-16 lg:pr-8 xl:pr-0 lg:w-1/2 lg:absolute lg:justify-end lg:bottom-0 lg:left-0 lg:items-center">
         <img
-          src="https://img.freepik.com/free-photo/front-view-smiley-male-photographer-with-camera_23-2148946289.jpg?w=826&t=st=1667884068~exp=1667884668~hmac=a9fad2b2f855f8a34b74977521f5b189770d12b8f49c3ceeaa30a8671d5fb73c"
+          src="https://img.freepik.com/free-photo/front-view-smiley-male-photographer-with-camera_23-2148946289.jpg?w=1000&t=st=1668018220~exp=1668018820~hmac=fb4ae4edd5d5595c48fa223a7446e4e4c8f4d2188bd724494799dad98033cab1"
           className="object-cover object-right w-full h-auto lg:w-auto lg:h-full"
           alt=""
         />

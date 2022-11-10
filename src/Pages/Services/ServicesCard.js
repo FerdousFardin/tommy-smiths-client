@@ -9,14 +9,14 @@ export const ServicesCard = ({
     <div className="overflow-hidden transition-shadow duration-300 bg-white rounded shadow-sm">
       <PhotoViewer img={img} imgStyles={"object-cover w-full h-64"} />
       <div className="p-5 border border-t-0">
-        <a
-          href="/"
+        <Link
+          to={`/service/${_id}`}
           aria-label="Category"
           title="Visit the East"
           className="inline-block mb-3 text-2xl font-bold leading-5 transition-colors duration-200 hover:text-deep-purple-accent-700"
         >
           {title}
-        </a>
+        </Link>
         <p className="my-2">You'll obtain</p>
         <ul className="grid sm:grid-cols-2 p-1 border-2 rounded-md mb-2">
           {benifits.map((benifit, idx) => (

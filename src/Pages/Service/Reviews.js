@@ -23,7 +23,7 @@ export const Reviews = ({ _id, title }) => {
     );
   };
   useEffect(() => {
-    fetch("http://localhost:5000/reviews")
+    fetch(`http://localhost:5000/reviews/${_id}`)
       .then((res) => res.json())
       .then((data) => {
         setReviews(data);
@@ -68,11 +68,19 @@ export const Reviews = ({ _id, title }) => {
       <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:text-center md:mx-auto">
         What My Clients Say
       </h2>
-      <div className="grid gap-8 lg:grid-cols-3 sm:max-w-sm sm:mx-auto lg:max-w-full">
-        {reviews.map((review) => (
-          <Review key={review._id} review={review} />
-        ))}
-      </div>
+
+      {reviews.length > 0 ? (
+        <div className="grid gap-8 lg:grid-cols-3 sm:max-w-sm sm:mx-auto lg:max-w-full">
+          {reviews.map((review) => (
+            <Review key={review._id} review={review} />
+          ))}
+        </div>
+      ) : (
+        <h1 className="w-full mb-6  text-3xl font-thin leading-none tracking-tight text-red-accent-200 sm:text-4xl md:text-center py-20">
+          No Reviews were added for this service!
+        </h1>
+      )}
+
       {user?.email ? (
         <>
           <h2 className="max-w-lg my-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:text-center md:mx-auto">

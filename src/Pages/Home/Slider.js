@@ -42,7 +42,7 @@ export const Slider = () => {
           <span className="relative text-teal-900">Gallery</span>
         </span>
       </h2>
-      <p className="absolute top-10 right-20 w-1/3 mb-6 text-base text-right text-gray-700 md:text-lg">
+      <p className=" absolute top-2 lg:top-5 right-20 w-1/3 mb-6 text-sm md:text-base text-right text-gray-700 lg:text-lg">
         I wanted to tell a story on the street. While often in the magazines the
         act of walking is portrayed in a stereotyped and frankly boring way,
         this is where looking to the future is for me, this is where the future

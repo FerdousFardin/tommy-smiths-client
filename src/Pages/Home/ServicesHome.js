@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ServicesCard } from "./ServicesCard";
+import { ServicesCardHome } from "./ServicesCardHome";
 
 export const ServiceHome = () => {
   const [services, setServices] = useState([]);
@@ -8,7 +8,7 @@ export const ServiceHome = () => {
     fetch("http://localhost:5000/services?limit=3")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setServices(data);
       });
   }, []);
@@ -33,14 +33,14 @@ export const ServiceHome = () => {
             key={service._id}
             className="p-5 duration-300 transform bg-white border rounded shadow-sm hover:-translate-y-2"
           >
-            <ServicesCard service={service} />
+            <ServicesCardHome service={service} />
           </div>
         ))}
       </div>
       <div className="text-center">
         <Link
           to={"/services"}
-          className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md md:w-auto bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+          className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md md:w-auto bg-teal-accent-400 hover:bg-teal-accent-700 focus:shadow-outline focus:outline-none"
         >
           See All
         </Link>

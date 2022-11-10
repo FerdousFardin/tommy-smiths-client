@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
+import Edit from "./Edit";
 
 export const TableRow = ({
   myReview: { idx, title, review, _id, deleteReview },
 }) => {
+  const [modalHandler, SetmodalHandler] = useState(false);
   return (
     <tr className="h-16 border border-gray-100 rounded">
       <td>
@@ -86,9 +88,13 @@ export const TableRow = ({
       </td>
 
       <td className="pl-4">
-        <button className="text-sm leading-none text-gray-600 py-3 px-5 bg-gray-100 rounded hover:bg-gray-200 focus:outline-none">
-          Edit
+        <button
+          onClick={() => SetmodalHandler(true)}
+          className="text-sm leading-none text-gray-600 py-3 px-5 bg-gray-100 rounded hover:bg-gray-200 focus:outline-none"
+        >
+          Edit{" "}
         </button>
+        <Edit modal={{ modalHandler, SetmodalHandler, review, _id, title }} />
       </td>
       <td className="pl-5">
         <button
