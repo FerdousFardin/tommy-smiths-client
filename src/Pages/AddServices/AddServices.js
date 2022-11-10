@@ -32,7 +32,7 @@ export const AddServices = () => {
       Math.random()
     ).toFixed(1);
     serviceDetails.date = Date.now();
-    fetch("http://localhost:5000/services", {
+    fetch("https://tom-smiths-photography.vercel.app/services", {
       method: "POST",
       headers: {
         "content-type": "application/json",

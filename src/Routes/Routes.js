@@ -21,13 +21,16 @@ export const route = createBrowserRouter([
       {
         path: "/services",
         element: <Services />,
-        loader: () => fetch("http://localhost:5000/services"),
+        loader: () =>
+          fetch("https://tom-smiths-photography.vercel.app/services"),
       },
       {
         path: "/service/:id",
         element: <Service />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/service/${params.id}`),
+          fetch(
+            `https://tom-smiths-photography.vercel.app/service/${params.id}`
+          ),
       },
       {
         path: "/login",

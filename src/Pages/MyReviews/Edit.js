@@ -1,24 +1,50 @@
 import React from "react";
+import { toast } from "react-toastify";
 import edit from "../../assets/images/icons/edit.png";
 const Edit = ({
   modal: { modalHandler, SetmodalHandler, review, title, _id },
 }) => {
+  const notify = (type) => {
+    const Toast = type === "info" ? toast.info : toast.error;
+    Toast(
+      `${type === "info" ? "Review Updated." : "Review couldn't be Updated."}`,
+      {
+        position: "top-center",
+        autoClose: 2500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      }
+    );
+  };
   const editReview = (e) => {
     e.preventDefault();
     const form = e.target;
     const newReview = form.newReview.value;
-    fetch(`http://localhost:5000/reviews/${_id}`, {
+    fetch(`https://tom-smiths-photography.vercel.app/reviews/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify({ review: newReview }),
+      body: JSON.stringify({ review: newReview, date: Date.now() }),
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
+        if (data.modifiedCount) {
+          notify("info");
+          setTimeout(() => {
+            SetmodalHandler(false);
+          }, 1000);
+        }
       })
-      .catch((er) => console.error(er));
+      .catch((er) => {
+        console.error(er);
+        notify("error");
+      });
   };
   return (
     <div>

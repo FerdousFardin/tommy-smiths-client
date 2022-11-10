@@ -12,7 +12,7 @@ export const TableRow = ({
       </td>
       <td className>
         <div className="flex items-center pl-5">
-          <p className="text-base font-medium leading-none text-gray-700 mr-2">
+          <p className="text-sm lg:text-base font-medium leading-none text-gray-700 mr-2">
             {review.length > 50 ? review.slice(0, 50) + "..." : review}
           </p>
           <svg
@@ -38,7 +38,7 @@ export const TableRow = ({
         </div>
       </td>
       <td className="pl-24">
-        <div className="flex items-center">
+        <div className="items-center hidden lg:flex">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width={20}
@@ -63,11 +63,11 @@ export const TableRow = ({
               strokeLinejoin="round"
             />
           </svg>
-          <p className="text-sm leading-none text-gray-600 ml-2">{title}</p>
+          <p className=" text-sm leading-none text-gray-600 ml-2">{title}</p>
         </div>
       </td>
-      <td className="pl-5">
-        <div className="flex items-center">
+      <td className="pl-5 hidden lg:inline">
+        <div className="flex items-center ">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width={20}
@@ -83,7 +83,7 @@ export const TableRow = ({
               strokeLinejoin="round"
             />
           </svg>
-          <p className="text-sm leading-none text-gray-600 ml-2">04/07</p>
+          <p className=" text-sm leading-none text-gray-600 ml-2">10/11</p>
         </div>
       </td>
 
