@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { ServicesCard } from "./ServicesCard";
 import { Helmet } from "react-helmet-async";
 
 export const Services = () => {
   const services = useLoaderData();
+  const [load, setLoad] = useState(true);
+  useEffect(() => {
+    setInterval(() => {
+      setLoad(false);
+    }, 500);
+  }, []);
   return (
     <>
-      {services.length > 0 ? (
+      {!load ? (
         ""
       ) : (
         <div className="w-full h-screen">

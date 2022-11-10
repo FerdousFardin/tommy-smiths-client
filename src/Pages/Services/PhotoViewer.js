@@ -53,7 +53,7 @@ export const PhotoViewer = ({ img, imgStyles }) => {
           return (
             <>
               <div
-                className="absolute text-teal-accent-200 text-lg top-5 right-5 p-3 cursor-pointer z-50"
+                className="absolute text-white text-lg top-5 right-5 p-3 cursor-pointer z-50"
                 onClick={onClose}
               >
                 Close
