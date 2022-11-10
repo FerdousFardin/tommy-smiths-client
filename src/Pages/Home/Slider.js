@@ -50,8 +50,8 @@ export const Slider = () => {
       </p>
       <div className="px-20 bg-slate-200">
         <div className="carousel py-20 relative w-full h-screen">
-          {sliders.map((slideData) => (
-            <SliderItems slideData={slideData} />
+          {sliders.map((slideData, idx) => (
+            <SliderItems key={idx} slideData={slideData} />
           ))}
         </div>
       </div>

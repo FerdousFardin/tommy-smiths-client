@@ -1,12 +1,17 @@
 import { GoogleAuthProvider } from "firebase/auth";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Auth/AuthProvider";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
 export const Login = () => {
   const [error, setError] = useState("");
-
+  const [load, setLoad] = useState(true);
+  useEffect(() => {
+    setInterval(() => {
+      setLoad(false);
+    }, 500);
+  }, []);
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
   const navigate = useNavigate();
@@ -97,116 +102,126 @@ export const Login = () => {
           </span>
         </span>
 
-        <div className="bg-white shadow rounded lg:w-1/3  md:w-1/2 w-full p-10 mt-16">
-          <p
-            tabindex="0"
-            className="focus:outline-none text-2xl font-extrabold leading-6 text-gray-800"
-          >
-            Login to your account
-          </p>
-          <p
-            tabindex="0"
-            className="focus:outline-none text-sm mt-4 font-medium leading-none text-gray-500"
-          >
-            Dont have account?{" "}
-            <Link
-              to={"/register"}
-              className="hover:text-gray-500 focus:text-gray-500 focus:outline-none focus:underline hover:underline text-sm font-medium leading-none  text-gray-800 cursor-pointer"
-            >
-              {" "}
-              Sign up here
-            </Link>
-          </p>
-          <button
-            onClick={googleSignin}
-            aria-label="Continue with google"
-            role="button"
-            className="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-10"
-          >
-            <img
-              src="https://tuk-cdn.s3.amazonaws.com/can-uploader/sign_in-svg2.svg"
-              alt="google"
-            />
-            <p className="text-base font-medium ml-4 text-gray-700">
-              Continue with Google
-            </p>
-          </button>
-          <div className="w-full flex items-center justify-between py-5">
-            <hr className="w-full bg-gray-400" />
-            <p className="text-base font-medium leading-4 px-2.5 text-gray-400">
-              OR
-            </p>
-            <hr className="w-full bg-gray-400  " />
-          </div>
-          <form onSubmit={handleSubmit(handleLogin)}>
-            <div>
-              <label
-                id="email"
-                className="text-sm font-medium leading-none text-gray-800"
-              >
-                Email
-              </label>
-              <input
-                {...register("email", {
-                  required: "Email is required.",
-                  pattern: {
-                    value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
-                    message: "Email is not valid.",
-                  },
-                })}
-                aria-labelledby="email"
-                type="email"
-                name="email"
-                className="bg-gray-200 border rounded  text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
-              />
-              {errors.email && (
-                <p className="text-red-500 py-2">*{errors.email.message}</p>
-              )}
+        {load ? (
+          <div className="w-full h-screen">
+            <div className="absolute right-1/2 bottom-1/2  transform translate-x-1/2 translate-y-1/2 ">
+              <div className="border-t-transparent border-solid animate-spin  rounded-full border-teal-accent-700  border-8 h-20 w-20"></div>
             </div>
-            <div className="mt-6  w-full">
-              <label
-                for="pass"
-                className="text-sm font-medium leading-none text-gray-800"
+          </div>
+        ) : (
+          <div className="bg-white shadow rounded lg:w-1/3  md:w-1/2 w-full p-10 mt-16">
+            <p
+              tabIndex="0"
+              className="focus:outline-none text-2xl font-extrabold leading-6 text-gray-800"
+            >
+              Login to your account
+            </p>
+            <p
+              tabIndex="0"
+              className="focus:outline-none text-sm mt-4 font-medium leading-none text-gray-500"
+            >
+              Dont have account?{" "}
+              <Link
+                to={"/register"}
+                className="hover:text-gray-500 focus:text-gray-500 focus:outline-none focus:underline hover:underline text-sm font-medium leading-none  text-gray-800 cursor-pointer"
               >
-                Password
-              </label>
-              <div className="relative flex items-center justify-center">
+                {" "}
+                Sign up here
+              </Link>
+            </p>
+            <button
+              onClick={googleSignin}
+              aria-label="Continue with google"
+              role="button"
+              className="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-10"
+            >
+              <img
+                src="https://tuk-cdn.s3.amazonaws.com/can-uploader/sign_in-svg2.svg"
+                alt="google"
+              />
+              <p className="text-base font-medium ml-4 text-gray-700">
+                Continue with Google
+              </p>
+            </button>
+            <div className="w-full flex items-center justify-between py-5">
+              <hr className="w-full bg-gray-400" />
+              <p className="text-base font-medium leading-4 px-2.5 text-gray-400">
+                OR
+              </p>
+              <hr className="w-full bg-gray-400  " />
+            </div>
+            <form onSubmit={handleSubmit(handleLogin)}>
+              <div>
+                <label
+                  id="email"
+                  className="text-sm font-medium leading-none text-gray-800"
+                >
+                  Email
+                </label>
                 <input
-                  {...register("password", {
-                    required: "Password is required.",
-                    minLength: {
-                      value: 6,
-                      message: "Password should be at-least 6 characters.",
+                  {...register("email", {
+                    required: "Email is required.",
+                    pattern: {
+                      value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
+                      message: "Email is not valid.",
                     },
                   })}
-                  id="pass"
-                  type="password"
-                  name="password"
+                  aria-labelledby="email"
+                  type="email"
+                  name="email"
                   className="bg-gray-200 border rounded  text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
                 />
-
-                <div className="absolute right-0 mt-2 mr-3 cursor-pointer">
-                  <img
-                    src="https://tuk-cdn.s3.amazonaws.com/can-uploader/sign_in-svg5.svg"
-                    alt="viewport"
-                  />
-                </div>
+                {errors.email && (
+                  <p className="text-red-500 py-2">*{errors.email.message}</p>
+                )}
               </div>
-              {errors.password && (
-                <p className="text-red-500 py-2">*{errors.password.message}</p>
-              )}
-              {error && <p className="text-red-500 py-2">*{error}</p>}
-            </div>
-            <div className="mt-8">
-              <button
-                type="submit"
-                className="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 text-sm font-semibold leading-none text-white focus:outline-none bg-indigo-700 border rounded hover:bg-indigo-600 py-4 w-full"
-              >
-                Sign In
-              </button>
-            </div>
-          </form>
-        </div>
+              <div className="mt-6  w-full">
+                <label
+                  htmlFor="pass"
+                  className="text-sm font-medium leading-none text-gray-800"
+                >
+                  Password
+                </label>
+                <div className="relative flex items-center justify-center">
+                  <input
+                    {...register("password", {
+                      required: "Password is required.",
+                      minLength: {
+                        value: 6,
+                        message: "Password should be at-least 6 characters.",
+                      },
+                    })}
+                    id="pass"
+                    type="password"
+                    name="password"
+                    className="bg-gray-200 border rounded  text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
+                  />
+
+                  <div className="absolute right-0 mt-2 mr-3 cursor-pointer">
+                    <img
+                      src="https://tuk-cdn.s3.amazonaws.com/can-uploader/sign_in-svg5.svg"
+                      alt="viewport"
+                    />
+                  </div>
+                </div>
+                {errors.password && (
+                  <p className="text-red-500 py-2">
+                    *{errors.password.message}
+                  </p>
+                )}
+                {error && <p className="text-red-500 py-2">*{error}</p>}
+              </div>
+              <div className="mt-8">
+                <button
+                  type="submit"
+                  className="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 text-sm font-semibold leading-none text-white focus:outline-none bg-indigo-700 border rounded hover:bg-indigo-600 py-4 w-full"
+                >
+                  Sign In
+                </button>
+              </div>
+            </form>
+          </div>
+        )}
       </div>
     </div>
   );

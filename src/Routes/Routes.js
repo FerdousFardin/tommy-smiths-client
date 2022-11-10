@@ -10,6 +10,7 @@ import { Service } from "../Pages/Service/Service";
 import Error from "../Pages/Error/Error";
 import { AddServices } from "../Pages/AddServices/AddServices";
 import { Private } from "../Private/Private";
+import { Blog } from "../Pages/Blog/Blog";
 
 export const route = createBrowserRouter([
   {
@@ -58,7 +59,7 @@ export const route = createBrowserRouter([
       },
       {
         path: "/blog",
-        element: <blog />,
+        element: <Blog />,
       },
     ],
   },

@@ -77,7 +77,7 @@ export const MyReviews = () => {
               <p className="text-base font-mono sm:text-xl md:text-2xl lg:text-3xl font-medium leading-normal text-gray-800">
                 My{" "}
                 <span className="relative inline-block px-2">
-                  <div className="absolute inset-0 transform -skew-x-12 bg-teal-accent-400" />
+                  <span className="absolute inset-0 transform -skew-x-12 bg-teal-accent-400" />
                   <span className="relative text-teal-900">Reviews</span>
                 </span>
               </p>
@@ -97,11 +97,13 @@ export const MyReviews = () => {
               <table className="w-full whitespace-nowrap">
                 <tbody>
                   {myReviews.length === 0 ? (
-                    <td>
-                      <h1 className="text-xl text-red-400 md:text-2xl lg:text-3xl">
-                        No Reviews Were Added!
-                      </h1>
-                    </td>
+                    <tr>
+                      <td>
+                        <h1 className="text-xl text-red-400 md:text-2xl lg:text-3xl">
+                          No Reviews Were Added!
+                        </h1>
+                      </td>
+                    </tr>
                   ) : (
                     myReviews.map((myReview, idx) => (
                       <TableRow

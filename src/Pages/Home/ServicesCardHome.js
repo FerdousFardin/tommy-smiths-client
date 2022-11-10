@@ -18,8 +18,8 @@ export const ServicesCardHome = ({
           <div className="text-xl lg:text-2xl font-semibold my-5">{title}</div>
           <div className="text-lg font-medium">You'll get</div>
           <ul className="py-5">
-            {benifits.map((benifit) => (
-              <li className="flex items-center mb-2.5">
+            {benifits.map((benifit, idx) => (
+              <li key={idx} className="flex items-center mb-2.5">
                 <img
                   src="https://cdn.tuk.dev/assets/templates/weCare/checkMark.png"
                   className="mr-4"

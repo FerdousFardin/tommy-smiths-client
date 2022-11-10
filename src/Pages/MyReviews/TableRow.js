@@ -10,7 +10,7 @@ export const TableRow = ({
       <td>
         <p className="ml-5">{idx + 1}.</p>
       </td>
-      <td className>
+      <td>
         <div className="flex items-center pl-5">
           <p className="text-sm lg:text-base font-medium leading-none text-gray-700 mr-2">
             {review.length > 50 ? review.slice(0, 50) + "..." : review}
