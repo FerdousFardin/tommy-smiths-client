@@ -20,9 +20,20 @@ export const Login = () => {
     const { email, password } = data;
     signInUser(email, password)
       .then((res) => {
-        // console.log(res.user);
-        setError("");
-        navigate(from, { replace: true });
+        fetch("https://tom-smiths-photography.vercel.app/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ email: res.user.email }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            // console.log(data);
+            localStorage.setItem("access-token", data.token);
+            setError("");
+            navigate(from, { replace: true });
+          });
       })
       .catch((er) => {
         setError(er.code);
@@ -32,9 +43,21 @@ export const Login = () => {
   const googleSignin = () => {
     const googleProvider = new GoogleAuthProvider();
     signInWithProvider(googleProvider)
-      .then(() => {
-        setError("");
-        navigate(from, { replace: true });
+      .then((res) => {
+        fetch("https://tom-smiths-photography.vercel.app/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ email: res.user.email }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            // console.log(data);
+            localStorage.setItem("access-token", data.token);
+            setError("");
+            navigate(from, { replace: true });
+          });
       })
       .catch((er) => {
         setError(er.code);

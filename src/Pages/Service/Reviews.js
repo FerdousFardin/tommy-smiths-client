@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../Auth/AuthProvider";
 import { Review } from "./Review";
@@ -23,7 +24,11 @@ export const Reviews = ({ _id, title }) => {
     );
   };
   useEffect(() => {
-    fetch(`https://tom-smiths-photography.vercel.app/reviews/${_id}`)
+    fetch(`https://tom-smiths-photography.vercel.app/reviews/${_id}`,{
+      headers:{
+        authorization:`Bearer ${localStorage.getItem("access-token")}`,
+      }
+    })
       .then((res) => res.json())
       .then((data) => {
         setReviews(data);
@@ -58,10 +63,14 @@ export const Reviews = ({ _id, title }) => {
         if (data.acknowledged) {
           reviewBody._id = data.insertedId;
           setReviews([reviewBody, ...reviews]);
+          notify("success");
           e.target.reset();
         }
       })
-      .catch((er) => console.error(er));
+      .catch((er) => {
+        notify("error");
+        console.error(er);
+      });
   };
   return (
     <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
@@ -109,7 +118,12 @@ export const Reviews = ({ _id, title }) => {
         </>
       ) : (
         <h1 className="text-info text-center my-10 text-lg md:text-2xl lg:text-4xl">
-          Please Login to Add Review
+          Please{" "}
+          <Link to="/login" className="link-hover link-accent">
+            {" "}
+            Login
+          </Link>{" "}
+          to Add Review
         </h1>
       )}
     </div>

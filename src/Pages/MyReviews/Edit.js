@@ -27,6 +27,7 @@ const Edit = ({
     fetch(`https://tom-smiths-photography.vercel.app/reviews/${_id}`, {
       method: "PUT",
       headers: {
+        authorization: `Bearer ${localStorage.getItem("access-token")}`,
         "content-type": "application/json",
       },
       body: JSON.stringify({ review: newReview, date: Date.now() }),
@@ -98,14 +99,14 @@ const Edit = ({
                   className="focus:outline-none transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm"
                   value="Submit"
                 />
-                <button
-                  onClick={() => SetmodalHandler(false)}
-                  className="focus:outline-none ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm"
-                >
-                  Cancel
-                </button>
               </div>
             </form>
+            <button
+              onClick={() => SetmodalHandler(false)}
+              className="focus:outline-none mt-2 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm"
+            >
+              Cancel
+            </button>
             <div
               onClick={() => SetmodalHandler(false)}
               className="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out"

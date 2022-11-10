@@ -3,9 +3,11 @@ import { Link, useLoaderData } from "react-router-dom";
 import { PhotoViewer } from "../Services/PhotoViewer";
 import { Reviews } from "./Reviews";
 import { Helmet } from "react-helmet-async";
+import { Facilities } from "./Facilities";
 
 export const Service = () => {
-  const [{ _id, title, img, price, description, rating }] = useLoaderData();
+  const [{ _id, title, img, price, description, rating, benifits }] =
+    useLoaderData();
   return (
     <>
       {_id ? (
@@ -24,12 +26,12 @@ export const Service = () => {
           </div>
         </div>
       )}
-      <div className="dark:bg-gray-900 py-20 px-5 lg:px-5">
+      <div className="dark:bg-gray-900 py-20 px-5 sm:px-0">
         <Helmet>
           <title>{title} - Tommy Smiths Photography</title>
           <meta name="Services" content="Services Page" />
         </Helmet>
-        <div className="mx-auto sm:text-center lg:max-w-2xl">
+        <div className="mx-auto sm:text-center lg:max-w-2xl sm:px-5 ">
           <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
             <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
               <span className="relative inline-block my-5">
@@ -89,8 +91,96 @@ export const Service = () => {
             </svg>
           </Link>
         </div>
+        <h2 className="my-10 font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none text-center">
+          Facilities
+        </h2>
+        <div className="bg-gray-100 my-10">
+          <div className="relative px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+            <div className="absolute inset-x-0 top-0 items-center justify-center hidden overflow-hidden md:flex md:inset-y-0">
+              <svg
+                viewBox="0 0 88 88"
+                className="w-full max-w-screen-xl text-indigo-100"
+              >
+                <circle fill="currentColor" cx="44" cy="44" r="15.5" />
+                <circle
+                  fillOpacity="0.2"
+                  fill="currentColor"
+                  cx="44"
+                  cy="44"
+                  r="44"
+                />
+                <circle
+                  fillOpacity="0.2"
+                  fill="currentColor"
+                  cx="44"
+                  cy="44"
+                  r="37.5"
+                />
+                <circle
+                  fillOpacity="0.3"
+                  fill="currentColor"
+                  cx="44"
+                  cy="44"
+                  r="29.5"
+                />
+                <circle
+                  fillOpacity="0.3"
+                  fill="currentColor"
+                  cx="44"
+                  cy="44"
+                  r="22.5"
+                />
+              </svg>
+            </div>
+
+            <div className="relative grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {benifits.map((facility, idx) => (
+                <Facilities key={idx} facility={facility} />
+              ))}
+            </div>
+          </div>
+        </div>
         <Reviews _id={_id} title={title} />
       </div>
     </>
   );
 };
+/*
+export const Content = () => {
+  return (
+    <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+      <div className="max-w-screen-sm sm:text-center sm:mx-auto">
+        <a
+          href="/"
+          aria-label="View"
+          className="inline-block mb-5 rounded-full sm:mx-auto"
+        >
+          <div className="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-indigo-50">
+            <svg
+              className="w-12 h-12 text-deep-purple-accent-400"
+              stroke="currentColor"
+              viewBox="0 0 52 52"
+            >
+              <polygon
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                fill="none"
+                points="29 13 14 29 25 29 23 39 38 23 27 23"
+              />
+            </svg>
+          </div>
+        </a>
+        <h2 className="mb-4 font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none">
+          Chase ball of string eat
+        </h2>
+        <p className="text-base text-gray-700 md:text-lg sm:px-4">
+          Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+          accusantium doloremque rem aperiam, eaque ipsa quae.
+        </p>
+        <hr className="w-full my-8 border-gray-300" />
+      </div>
+    </div>
+  );
+};
+*/

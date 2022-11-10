@@ -9,14 +9,19 @@ export const ServicesCard = ({
     <div className="overflow-hidden transition-shadow duration-300 bg-white rounded shadow-sm">
       <PhotoViewer img={img} imgStyles={"object-cover w-full h-64"} />
       <div className="p-5 border border-t-0">
-        <Link
-          to={`/service/${_id}`}
-          aria-label="Category"
-          title="Visit the East"
-          className="inline-block mb-3 text-2xl font-bold leading-5 transition-colors duration-200 hover:text-deep-purple-accent-700"
-        >
-          {title}
-        </Link>
+        <div className="flex justify-between items-center">
+          <Link
+            to={`/service/${_id}`}
+            aria-label="Category"
+            title={`Visit ${title}`}
+            className="inline-block mb-3 text-2xl font-bold leading-5 transition-colors duration-200 hover:text-teal-accent-400"
+          >
+            {title}
+          </Link>
+          <p className="border-2 rounded-lg px-2 py-1 border-teal-accent-200 text-teal-accent-700 font-medium md:font-semibold">
+            {price}
+          </p>
+        </div>
         <p className="my-2">You'll obtain</p>
         <ul className="grid sm:grid-cols-2 p-1 border-2 rounded-md mb-2">
           {benifits.map((benifit, idx) => (
@@ -33,7 +38,7 @@ export const ServicesCard = ({
         <Link
           to={`/service/${_id}`}
           aria-label=""
-          className="inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800"
+          className="inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-200 hover:text-deep-purple-900"
         >
           Learn more
         </Link>

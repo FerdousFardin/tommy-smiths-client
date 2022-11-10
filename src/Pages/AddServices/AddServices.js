@@ -22,11 +22,10 @@ export const AddServices = () => {
       }
     );
   };
-  const addService = (data) => {
-    // console.log(data);
+  const addService = (data, e) => {
     const serviceDetails = data;
     serviceDetails.benifits = data.benifits.split(".");
-    serviceDetails.rating = +(
+    serviceDetails.rating = (
       Math.round(Math.random() * 3) +
       1 +
       Math.random()
@@ -36,6 +35,7 @@ export const AddServices = () => {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        authorization:`Bearer ${localStorage.getItem("access-token")}`,
       },
       body: JSON.stringify(serviceDetails),
     })
@@ -44,6 +44,7 @@ export const AddServices = () => {
         console.log(data);
         if (data.acknowledged) {
           notify("success");
+          e.target.reset();
         } else notify("error");
       })
       .catch((er) => {
@@ -76,7 +77,7 @@ export const AddServices = () => {
                     Title
                   </label>
                   <input
-                    {...register("title")}
+                    {...register("title", { required: true })}
                     className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                     id="service-title"
                     type="text"
@@ -91,7 +92,7 @@ export const AddServices = () => {
                     Price
                   </label>
                   <input
-                    {...register("price")}
+                    {...register("price", { required: true })}
                     className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                     id="price"
                     type="text"
@@ -108,7 +109,7 @@ export const AddServices = () => {
                   Service Thumbnail URL
                 </label>
                 <input
-                  {...register("img")}
+                  {...register("img", { required: true })}
                   className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                   id="imgURL"
                   type="url"
@@ -124,7 +125,7 @@ export const AddServices = () => {
                     Facilities
                   </label>
                   <textarea
-                    {...register("benifits")}
+                    {...register("benifits", { required: true })}
                     className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border  rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                     id="facilities"
                     type=""
@@ -143,7 +144,7 @@ export const AddServices = () => {
                     Description
                   </label>
                   <textarea
-                    {...register("description")}
+                    {...register("description", { required: true })}
                     className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                     id="description"
                     placeholder="Description"

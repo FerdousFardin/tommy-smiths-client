@@ -57,7 +57,7 @@ export const Services = () => {
         <p className="uppercase text-lg lg:text-2xl text-center my-10">
           Ready to Hire me?
         </p>
-        <div className="grid gap-8 lg:grid-cols-3 sm:max-w-sm sm:mx-auto lg:max-w-full">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 sm:max-w-sm sm:mx-auto md:max-w-full">
           {services.map((service) => (
             <ServicesCard service={service} key={service._id} />
           ))}

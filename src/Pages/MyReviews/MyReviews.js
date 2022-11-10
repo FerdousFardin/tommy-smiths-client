@@ -28,17 +28,25 @@ export const MyReviews = () => {
   };
   useEffect(() => {
     fetch(
-      `https://tom-smiths-photography.vercel.app/reviews?email=${user?.email}`
+      `https://tom-smiths-photography.vercel.app/myreviews?email=${user?.email}`,
+      {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("access-token")}`,
+        },
+      }
     )
       .then((res) => res.json())
       .then((data) => {
         setMyReviews(data);
       });
-  }, [user]);
+  }, [user?.email]);
 
   const deleteReview = (id) => {
     fetch(`https://tom-smiths-photography.vercel.app/reviews/${id}`, {
       method: "DELETE",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("access-token")}`,
+      },
     })
       .then((res) => res.json())
       .then((data) => {
