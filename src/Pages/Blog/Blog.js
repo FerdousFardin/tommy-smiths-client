@@ -137,7 +137,7 @@ export const Blog = () => {
         <div className="mt-8 lg:-mx-6 lg:flex lg:items-center">
           <img
             className="object-cover w-full lg:mx-6 lg:w-1/2 rounded-xl h-72 lg:h-96"
-            src="http://jwt.io/img/logo-asset.svg"
+            src="https://jwt.io/img/logo-asset.svg"
             alt=""
           />
 

@@ -6,8 +6,9 @@ import { TableRow } from "./TableRow";
 import { Helmet } from "react-helmet-async";
 
 export const MyReviews = () => {
-  const { user } = useContext(AuthContext);
+  const { user, signOutUser } = useContext(AuthContext);
   const [myReviews, setMyReviews] = useState([]);
+
   const notify = (type) => {
     const Toast = type === "success" ? toast.success : toast.error;
     Toast(
@@ -35,11 +36,15 @@ export const MyReviews = () => {
         },
       }
     )
-      .then((res) => res.json())
+      .then((res) => {
+        // console.log(res);
+        if (res.status === 403 || res.status === 401) return signOutUser();
+        return res.json();
+      })
       .then((data) => {
         setMyReviews(data);
       });
-  }, [user?.email]);
+  }, [user?.email, signOutUser]);
 
   const deleteReview = (id) => {
     fetch(`https://tom-smiths-photography.vercel.app/reviews/${id}`, {
@@ -48,7 +53,11 @@ export const MyReviews = () => {
         authorization: `Bearer ${localStorage.getItem("access-token")}`,
       },
     })
-      .then((res) => res.json())
+      .then((res) => {
+        // console.log(res);
+        if (res.status === 403 || res.status === 401) return signOutUser();
+        return res.json();
+      })
       .then((data) => {
         console.log(data);
         if (data.deletedCount > 0) {

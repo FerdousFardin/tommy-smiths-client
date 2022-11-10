@@ -37,6 +37,7 @@ export const AuthProvider = ({ children }) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
   const signOutUser = () => {
+    localStorage.removeItem("access-token");
     setLoading(true);
     return signOut(auth);
   };

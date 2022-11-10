@@ -84,7 +84,7 @@ export const Footer = () => {
             </div>
             <div>
               <p className="font-semibold tracking-wide text-teal-accent-400">
-                Cherry
+                About
               </p>
               <ul className="mt-2 space-y-2">
                 <li>
@@ -131,7 +131,7 @@ export const Footer = () => {
             </div>
             <div>
               <p className="font-semibold tracking-wide text-teal-accent-400">
-                Apples
+                Topic
               </p>
               <ul className="mt-2 space-y-2">
                 <li>

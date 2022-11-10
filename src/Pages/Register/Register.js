@@ -7,7 +7,9 @@ import { toast } from "react-toastify";
 
 export function Register() {
   const { registerUser } = useContext(AuthContext);
+
   const navigate = useNavigate();
+  const [error, setError] = useState("");
   const [load, setLoad] = useState(true);
   useEffect(() => {
     setInterval(() => {
@@ -37,17 +39,34 @@ export function Register() {
       }
     );
   };
-  const handleRegister = (data) => {
+  const handleRegister = (data, e) => {
     const { email, password } = data;
     registerUser(email, password)
       .then((res) => {
         console.log(res.user);
         if (res.user?.uid) {
-          notify("info");
-          navigate("/");
+          fetch("https://tom-smiths-photography.vercel.app/jwt", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify({ email: res.user.email }),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              localStorage.setItem("access-token", data.token);
+              notify("info");
+              setError("");
+              e.target.reset();
+              navigate("/");
+            });
         }
       })
-      .catch((er) => console.error(er));
+      .catch((er) => {
+        notify("error");
+        setError(er.code);
+        console.error(er);
+      });
   };
   return (
     <div className="h-full bg-gradient-to-tl from-green-400 to-indigo-900 w-full py-16 px-4">
@@ -160,6 +179,7 @@ export function Register() {
                     })}
                     className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
                   />
+
                   <div className="absolute right-0 mt-2 mr-3 cursor-pointer">
                     <svg
                       width={16}
@@ -180,6 +200,7 @@ export function Register() {
                     *{errors.password.message}
                   </p>
                 )}
+                {error && <p className="text-red-500 py-2">*{error}</p>}
               </div>
               <div className="mt-8">
                 <button

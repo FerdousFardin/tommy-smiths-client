@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { toast } from "react-toastify";
 import edit from "../../assets/images/icons/edit.png";
+import { AuthContext } from "../../Auth/AuthProvider";
 const Edit = ({
   modal: { modalHandler, SetmodalHandler, review, title, _id },
 }) => {
@@ -20,6 +21,7 @@ const Edit = ({
       }
     );
   };
+  const { signOutUser } = useContext(AuthContext);
   const editReview = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -32,7 +34,10 @@ const Edit = ({
       },
       body: JSON.stringify({ review: newReview, date: Date.now() }),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 403 || res.status === 401) return signOutUser();
+        return res.json();
+      })
       .then((data) => {
         // console.log(data);
         if (data.modifiedCount) {

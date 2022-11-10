@@ -1,70 +1,25 @@
-# Getting Started with Create React App
+# Tommy Smiths Photography - A Photography Service
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Need a website, but don't have the time to build one yourself?**
+This website is a React-based photo service that allows you to provide your service to fullest.
 
-## Available Scripts
+### Features Section
 
-In the project directory, you can run:
+- ## ReactJS
 
-### `npm start`
+This website exclusively uses React JS and in-house frameworks to build webpages. Created by Facebook, React JS is the go-to framework for building complex web applications.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- ## MongoDB
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Tommy Smiths uses MongoDB to store all data in a NoSQL database. With noSQL databases, data is not restricted by rigid schemas and can be queried with ad hoc queries.
 
-### `npm test`
+- ## Firebase
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Tommy Smiths uses Firebase Authentication for all accounts, which offers easy integration with Google, Facebook, Twitter and others. So you never have to remember another password!
 
-### `npm run build`
+- ## React Router
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  This website uses React-router to supply the browser with an asynchronous URL that corresponds to the data that will show on the web page. React-router allows the website to be used as a single-page-application since it retains the application's regular structure and functionality.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- ## JSON Web Token
+  This website uses JSON Web Token or JWT to let a user sign in using their credentials. JWTs are a good way of securely transmitting information between parties with tokens because they can be signed while encrypted tokens hide those claims from other parties.
