@@ -1,7 +1,7 @@
 # Tommy Smiths Photography - A Photography Service
 
-**Need a website, but don't have the time to build one yourself?**  
- This website is a React-based photo service that allows you to provide your service to fullest.
+**Need a website, but don't have the time to build one yourself?** <br/>
+This website is a React-based photo service that allows you to provide your service to fullest.
 
 ### Features Section
 
