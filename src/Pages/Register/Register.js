@@ -43,7 +43,6 @@ export function Register() {
     const { email, password } = data;
     registerUser(email, password)
       .then((res) => {
-        console.log(res.user);
         if (res.user?.uid) {
           fetch("https://tom-smiths-photography.vercel.app/jwt", {
             method: "POST",

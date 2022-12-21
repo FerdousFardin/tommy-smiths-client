@@ -24,10 +24,10 @@ export const Reviews = ({ _id, title }) => {
     );
   };
   useEffect(() => {
-    fetch(`https://tom-smiths-photography.vercel.app/reviews/${_id}`,{
-      headers:{
-        authorization:`Bearer ${localStorage.getItem("access-token")}`,
-      }
+    fetch(`https://tom-smiths-photography.vercel.app/reviews/${_id}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("access-token")}`,
+      },
     })
       .then((res) => res.json())
       .then((data) => {
@@ -50,7 +50,6 @@ export const Reviews = ({ _id, title }) => {
         "https://images.unsplash.com/placeholder-avatars/extra-large.jpg?dpr=1&auto=format&fit=crop&w=64&h=64&q=60&crop=faces&bg=fff",
       name: user?.displayName || "Anonymous",
     };
-    // console.log(reviewBody);
     fetch("https://tom-smiths-photography.vercel.app/reviews", {
       method: "POST",
       headers: {

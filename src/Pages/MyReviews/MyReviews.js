@@ -39,7 +39,6 @@ export const MyReviews = () => {
       }
     )
       .then((res) => {
-        // console.log(res);
         if (res.status === 403 || res.status === 401) return signOutUser();
         return res.json();
       })
@@ -56,12 +55,10 @@ export const MyReviews = () => {
       },
     })
       .then((res) => {
-        // console.log(res);
         if (res.status === 403 || res.status === 401) return signOutUser();
         return res.json();
       })
       .then((data) => {
-        console.log(data);
         if (data.deletedCount > 0) {
           const restReviews = myReviews.filter(
             (myReview) => myReview._id !== id

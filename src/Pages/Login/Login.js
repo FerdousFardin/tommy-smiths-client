@@ -34,7 +34,6 @@ export const Login = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-            // console.log(data);
             localStorage.setItem("access-token", data.token);
             setError("");
             navigate(from, { replace: true });
@@ -58,7 +57,6 @@ export const Login = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-            // console.log(data);
             localStorage.setItem("access-token", data.token);
             setError("");
             navigate(from, { replace: true });

@@ -35,13 +35,12 @@ export const AddServices = () => {
       method: "POST",
       headers: {
         "content-type": "application/json",
-        authorization:`Bearer ${localStorage.getItem("access-token")}`,
+        authorization: `Bearer ${localStorage.getItem("access-token")}`,
       },
       body: JSON.stringify(serviceDetails),
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.acknowledged) {
           notify("success");
           e.target.reset();

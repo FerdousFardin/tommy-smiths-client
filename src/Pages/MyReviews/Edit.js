@@ -39,7 +39,6 @@ const Edit = ({
         return res.json();
       })
       .then((data) => {
-        // console.log(data);
         if (data.modifiedCount) {
           notify("info");
           setTimeout(() => {

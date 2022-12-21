@@ -8,7 +8,6 @@ export const ServiceHome = () => {
     fetch("https://tom-smiths-photography.vercel.app/services?limit=3")
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
         setServices(data);
       });
   }, []);
