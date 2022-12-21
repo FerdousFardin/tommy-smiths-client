@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import Edit from "./Edit";
 
-export const TableRow = ({
-  myReview: { idx, title, review, _id, deleteReview },
-}) => {
+export const TableRow = ({ myReview }) => {
+  const { idx, title, review, _id, setSelectedReview } = myReview;
   const [modalHandler, SetmodalHandler] = useState(false);
   return (
     <tr className="h-16 border border-gray-100 rounded">
@@ -97,12 +96,13 @@ export const TableRow = ({
         <Edit modal={{ modalHandler, SetmodalHandler, review, _id, title }} />
       </td>
       <td className="pl-5">
-        <button
-          onClick={() => deleteReview(_id)}
+        <label
+          onClick={() => setSelectedReview(myReview)}
+          htmlFor="deleteModal"
           className="py-3 px-3 text-sm focus:outline-none leading-none text-red-500 bg-red-100 hover:bg-red-200 rounded"
         >
           Delete
-        </button>
+        </label>
       </td>
     </tr>
   );

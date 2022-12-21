@@ -4,10 +4,12 @@ import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../../Auth/AuthProvider";
 import { TableRow } from "./TableRow";
 import { Helmet } from "react-helmet-async";
+import DeleteModal from "./DeleteModal";
 
 export const MyReviews = () => {
   const { user, signOutUser } = useContext(AuthContext);
   const [myReviews, setMyReviews] = useState([]);
+  const [selectedReview, setSelectedReview] = useState({});
 
   const notify = (type) => {
     const Toast = type === "success" ? toast.success : toast.error;
@@ -95,11 +97,11 @@ export const MyReviews = () => {
           <div className="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10">
             <div className="sm:flex items-center justify-between">
               <div className="flex items-center">
-                <a>
+                <span>
                   <div className="py-2 px-8 bg-indigo-100 text-indigo-700 rounded-full">
                     <p>All</p>
                   </div>
-                </a>
+                </span>
               </div>
             </div>
             <div className="mt-7 overflow-x-auto">
@@ -117,12 +119,18 @@ export const MyReviews = () => {
                     myReviews.map((myReview, idx) => (
                       <TableRow
                         key={myReview._id}
-                        myReview={{ ...myReview, idx, deleteReview }}
+                        myReview={{
+                          ...myReview,
+                          idx,
+                          deleteReview,
+                          setSelectedReview,
+                        }}
                       />
                     ))
                   )}
                 </tbody>
               </table>
+              <DeleteModal myReview={selectedReview} />
             </div>
           </div>
         </div>
